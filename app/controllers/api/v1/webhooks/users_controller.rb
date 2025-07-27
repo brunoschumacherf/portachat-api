@@ -11,6 +11,7 @@ module Api
           if user.save
             UserMailer.welcome_email(user, password).deliver_later
             ActionCable.server.broadcast('users_channel', { type: 'NEW_USER', payload: user.as_json(only: [:id, :name, :email, :access_level, :status]) })
+
             render json: { id: user.id, status: 'created' }, status: :created
           else
             render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
