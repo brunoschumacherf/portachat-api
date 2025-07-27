@@ -2,7 +2,7 @@ module Api
   module V1
     module Webhooks
       class UsersController < ApplicationController
-
+        skip_before_action :authenticate_request, only: [:create]
 
         def create
           user = User.new(user_params)
