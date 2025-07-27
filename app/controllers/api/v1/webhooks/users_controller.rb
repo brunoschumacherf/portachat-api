@@ -6,11 +6,11 @@ module Api
 
         def create
           user = User.new(user_params)
-          # O webhook fornece uma senha temporária forte
-          user.password = user.password_confirmation = SecureRandom.hex(8)
+          password = user.password = user.password_confirmation = SecureRandom.hex(8)
 
           if user.save
-            # TODO: Enviar email de boas-vindas com a senha temporária
+            UserMailer.welcome_email(user, password).deliver_later
+            ActionCable.server.broadcast('users_channel', { type: 'NEW_USER', payload: user.as_json(only: [:id, :name, :email, :access_level, :status]) })
             render json: { id: user.id, status: 'created' }, status: :created
           else
             render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
