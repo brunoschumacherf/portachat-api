@@ -51,4 +51,4 @@ USER 1000:1000
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+CMD bundle exec sidekiq & ruby -run -e httpd . -p ${PORT:-3000}
