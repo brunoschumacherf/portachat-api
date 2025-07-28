@@ -8,7 +8,14 @@ module Api
         @q = User.ransack(params[:q])
         @users = @q.result(distinct: true)
 
-        render json: @users.as_json(only: [:id, :name, :email, :access_level, :status]), status: :ok
+        cache_key = ['v1', 'users', params[:q], @users.maximum(:updated_at).to_i]
+
+
+        users_json = Rails.cache.fetch(cache_key, expires_in: 1.hour) do
+          @users.as_json(only: [:id, :name, :email, :access_level, :status])
+        end
+
+        render json: users_json, status: :ok
       end
 
       def destroy
