@@ -25,7 +25,7 @@ O projeto é totalmente containerizado. Para rodá-lo localmente, basta ter o **
 1. Clone o repositório e aceda à pasta do projeto:
 
 ```bash
-git clone https://github.com/seu-usuario/portachat-api.git
+git clone https://github.com/brunoschumacherf/portachat-api.git
 cd portachat-api
 ```
 
