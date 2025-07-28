@@ -1,11 +1,45 @@
-<h1>Bem-vindo ao PortaChat!</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bem-vindo ao PortaChat!</title>
+  </head>
+  <body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', sans-serif; background-color: #f9fafb;">
+    <table width="100%" cellspacing="0" cellpadding="0" style="padding: 2rem;">
+      <tr>
+        <td align="center">
+          <table width="600" style="background-color: #ffffff; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
+            <tr>
+              <td style="padding: 2rem; text-align: center; background-color: #3b82f6; color: white;">
+                <h1 style="font-size: 1.5rem; font-weight: bold; margin: 0;">Bem-vindo ao PortaChat!</h1>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 2rem; color: #111827; font-size: 1rem; line-height: 1.5;">
+                <p style="margin-bottom: 1rem;">
+                  Olá <strong><%= @user.name %></strong>, bem-vindo ao PortaChat! Estamos felizes em tê-lo conosco.
+                </p>
 
-<p>
-  Olá <%= @user.name %>, bem-vindo ao PortaChat! Estamos felizes em tê-lo conosco.
-</p>
-<p>
-  Para começar a usar o PortaChat, você pode acessar sua conta através do seguinte link:
-</p>
-<p>
-  Sua Senha Temporária: <strong><%= @password %></strong>
-</p>
+                <p style="margin-bottom: 1rem;">
+                  Para começar a usar o PortaChat, você pode acessar sua conta através do seguinte link:
+                </p>
+
+                <p style="margin-bottom: 1rem;">
+                  Sua Senha Temporária:
+                  <strong style="background-color: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 0.25rem; display: inline-block;">
+                    <%= @password %>
+                  </strong>
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #f3f4f6; text-align: center; padding: 1rem; color: #6b7280; font-size: 0.875rem;">
+                PortaChat
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
