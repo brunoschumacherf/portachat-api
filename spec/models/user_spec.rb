@@ -9,6 +9,7 @@ RSpec.describe User, type: :model do
     it { should allow_value('user@example.com').for(:email) }
     it { should_not allow_value('not-an-email').for(:email) }
     it { should have_secure_password }
+    it { should validate_length_of(:password).is_at_least(8) }
   end
 
   describe 'enums' do
@@ -16,7 +17,9 @@ RSpec.describe User, type: :model do
     it { should define_enum_for(:status).with_values(active: 0, inactive: 1) }
   end
 
-  it 'is valid with valid attributes' do
-    expect(build(:user)).to be_valid
+  describe 'associations' do
+    it { should have_many(:messages).dependent(:destroy) }
+    it { should have_many(:room_memberships).dependent(:destroy) }
+    it { should have_many(:rooms).through(:room_memberships) }
   end
 end

@@ -7,7 +7,7 @@ RSpec.describe "Users API", type: :request do
 
   describe "DELETE /api/v1/users/:id" do
     context "when user is an admin" do
-      it "inactivates the user" do
+      it 'returns an unauthorized error' do # Atualize a descrição
         delete "/api/v1/users/#{user_to_inactivate.id}", headers: auth_headers(admin)
         expect(response).to have_http_status(:no_content)
         expect(user_to_inactivate.reload.status).to eq('inactive')

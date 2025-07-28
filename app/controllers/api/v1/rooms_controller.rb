@@ -12,7 +12,8 @@ module Api
       def create
         @room = Room.new(room_params)
         if @room.save
-          @room.users << current_user
+          # TO DO: Add the current user to the room if needed and users selection is implemented
+          #@room.users << current_user
           render json: @room, status: :created
         else
           render json: @room.errors, status: :unprocessable_entity

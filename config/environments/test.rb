@@ -7,7 +7,6 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
   # While tests run files are not watched, reloading is not necessary.
   config.enable_reloading = false
 
@@ -55,6 +54,8 @@ Rails.application.configure do
 
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
+  config.hosts.clear
+  config.active_job.queue_adapter = :test
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
@@ -64,4 +65,14 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  config.action_mailer.smtp_settings = {
+    address:              ENV['SMTP_ADDRESS'],
+    port:                 ENV['SMTP_PORT'] || 587,
+    user_name:            ENV['SMTP_USER_NAME'],
+    password:             ENV['SMTP_PASSWORD'],
+    authentication:       :plain,
+    enable_starttls_auto: true
+  }
+
 end
