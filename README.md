@@ -1,25 +1,96 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+````markdown
+# PortaChat API
 
-* Ruby version
+Backend da aplicação de chat interno, construído com **Ruby on Rails 7**.  
+Fornece uma **API RESTful** com autenticação via **JWT**, comunicação em tempo real com **WebSockets (Action Cable)** e processamento assíncrono com **Sidekiq**.
 
-* System dependencies
+---
 
-* Configuration
+## 🚀 Tecnologias Principais
 
-* Database creation
+- **Ruby on Rails 7**
+- **PostgreSQL**
+- **Redis**
+- **Docker & Docker Compose**
+- **RSpec**
 
-* Database initialization
+---
 
-* How to run the test suite
+## 🛠️ Ambiente Local com Docker
 
-* Services (job queues, cache servers, search engines, etc.)
+O projeto é totalmente containerizado. Para rodá-lo localmente, basta ter o **Docker** e **Docker Compose** instalados.
 
-* Deployment instructions
+### ⚙️ Configuração Inicial
 
-* ...
-# portachat-api
+1. Clone o repositório e aceda à pasta do projeto:
+
+```bash
+git clone https://github.com/seu-usuario/portachat-api.git
+cd portachat-api
+````
+
+2. Verifique se o arquivo `config/master.key` existe. Caso contrário, solicite uma cópia segura.
+
+3. Crie e migre o banco de dados (somente na primeira vez):
+
+```bash
+docker-compose exec api bundle exec bin/rails db:create db:migrate
+```
+
+---
+
+## 💻 Comandos Essenciais
+
+### Iniciar a aplicação (em background):
+
+```bash
+docker-compose up -d
+```
+
+### Reconstruir e iniciar (após mudanças no `Gemfile` ou `Dockerfile`):
+
+```bash
+docker-compose up --build
+```
+
+### Executar a suíte de testes:
+
+```bash
+docker-compose run --rm -e RAILS_ENV=test api bundle exec rspec
+```
+
+### Acessar o console Rails:
+
+```bash
+docker-compose exec api bin/rails c
+```
+
+
+### Iniciar a aplicação:
+
+```bash
+docker-compose up
+```
+
+### ❗ Conflito de porta com PostgreSQL local
+
+Se necessário, pare o serviço local do PostgreSQL com:
+
+```bash
+sudo systemctl stop postgresql
+```
+
+---
+
+## 🔗 Links e Deploy
+
+* **📚 Documentação da API**: \[LINK DA DOCUMENTAÇÃO AQUI]
+* **🌐 Frontend**: [https://portachat-client.vercel.app/](https://portachat-client.vercel.app/)
+
+
+## 📝 Licença
+
+Este projeto está licenciado sob os termos da [MIT License](LICENSE).
+
