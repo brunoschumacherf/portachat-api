@@ -1,6 +1,4 @@
 
-
-````markdown
 # PortaChat API
 
 Backend da aplicação de chat interno, construído com **Ruby on Rails 7**.  
@@ -29,7 +27,7 @@ O projeto é totalmente containerizado. Para rodá-lo localmente, basta ter o **
 ```bash
 git clone https://github.com/seu-usuario/portachat-api.git
 cd portachat-api
-````
+```
 
 2. Verifique se o arquivo `config/master.key` existe. Caso contrário, solicite uma cópia segura.
 
