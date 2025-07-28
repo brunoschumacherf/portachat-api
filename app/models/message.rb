@@ -1,16 +1,15 @@
-# app/models/message.rb
 class Message < ApplicationRecord
   belongs_to :user
   belongs_to :room
 
   validates :content, presence: true
 
-  after_create_commit { broadcast_append_to self.room }
+  after_create_commit :broadcast_message
 
   private
 
-  
-  # def broadcast_message
-  #  RoomChannel.broadcast_to(self.room, self)
-  # end
+  def broadcast_message
+    payload = self.as_json(include: { user: { only: [:id, :name] } })
+    RoomChannel.broadcast_to(self.room, payload)
+  end
 end
