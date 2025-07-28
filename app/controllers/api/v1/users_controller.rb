@@ -6,12 +6,15 @@ module Api
 
       def index
         @q = User.ransack(params[:q])
-        @users = @q.result(distinct: true)
 
-        cache_key = ['v1', 'users', params[:q], @users.maximum(:updated_at).to_i]
+        max_updated_at = @q.result.maximum(:updated_at).try(:to_i)
 
+        query_params_key = params[:q]&.to_unsafe_h&.sort&.to_s || "all"
+
+        cache_key = ['v1', 'users', query_params_key, max_updated_at]
 
         users_json = Rails.cache.fetch(cache_key, expires_in: 1.hour) do
+          @users = @q.result(distinct: true)
           @users.as_json(only: [:id, :name, :email, :access_level, :status])
         end
 

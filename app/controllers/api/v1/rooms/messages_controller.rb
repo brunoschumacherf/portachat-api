@@ -1,4 +1,3 @@
-# app/controllers/api/v1/rooms/messages_controller.rb
 module Api
   module V1
     module Rooms
@@ -6,7 +5,7 @@ module Api
         before_action :set_room
 
         def index
-          @messages = @room.messages.order(created_at: :asc).includes(:user)
+          @messages = @room.messages.order(created_at: :asc)
           render json: @messages, include: { user: { only: [:id, :name] } }
         end
 
@@ -24,7 +23,7 @@ module Api
         private
 
         def set_room
-          @room = current_user.rooms.find(params[:room_id])
+          @room = Room.find(params[:room_id])
         end
 
         def message_params

@@ -7,7 +7,6 @@ module Api
         def create
           user = User.new(user_params)
           password = user.password = user.password_confirmation = SecureRandom.hex(8)
-          puts password
           if user.save
             UserMailer.welcome_email(user, password).deliver_later
             ActionCable.server.broadcast('users_channel', { type: 'NEW_USER', payload: user.as_json(only: [:id, :name, :email, :access_level, :status]) })

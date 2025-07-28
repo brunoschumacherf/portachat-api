@@ -4,7 +4,7 @@ module Api
     class RoomsController < ApplicationController
       # GET /api/v1/rooms
       def index
-        @rooms = current_user.rooms.order(name: :asc)
+        @rooms = Room.order(name: :asc)
         render json: @rooms
       end
 
