@@ -31,6 +31,7 @@ COPY . .
 
 RUN bundle exec bootsnap precompile app/ lib/
 
+
 FROM base
 
 RUN apt-get update -qq && \
