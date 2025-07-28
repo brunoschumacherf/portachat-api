@@ -84,7 +84,7 @@ sudo systemctl stop postgresql
 
 ## 🔗 Links e Deploy
 
-* **📚 Documentação da API**: \[LINK DA DOCUMENTAÇÃO AQUI]
+* **📚 Documentação da API**: [https://bold-desert-925648.postman.co/workspace/Team-Workspace~b249a7be-7a79-4d98-8572-ef8362299a56/collection/24048916-faeca747-924c-428e-aa07-8fc6c8bb5389?action=share&creator=24048916]
 * **🌐 Frontend**: [https://portachat-client.vercel.app/](https://portachat-client.vercel.app/)
 
 
