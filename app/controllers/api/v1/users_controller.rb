@@ -5,8 +5,10 @@ module Api
       before_action :authorize_admin!, only: [:destroy]
 
       def index
-        @users = User.order(name: :asc)
-        render json: @users, status: :ok
+        @q = User.ransack(params[:q])
+        @users = @q.result(distinct: true)
+
+        render json: @users.as_json(only: [:id, :name, :email, :access_level, :status]), status: :ok
       end
 
       def destroy
